@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Rakazo",
+    "name": "KAMO",
     "slug": "rakazo",
     "owner": "inbox-zero",
     "scheme": "rakazo",
@@ -23,14 +23,14 @@
         "expo-audio",
         {
           "enableBackgroundPlayback": false,
-          "microphonePermission": "Rakazo uses the microphone for voice calls with your bots."
+          "microphonePermission": "KAMO uses the microphone for voice calls with your bots."
         }
       ],
       [
         "expo-speech-recognition",
         {
-          "speechRecognitionPermission": "Rakazo turns your speech into messages during voice calls.",
-          "microphonePermission": "Rakazo uses the microphone for voice calls with your bots."
+          "speechRecognitionPermission": "KAMO turns your speech into messages during voice calls.",
+          "microphonePermission": "KAMO uses the microphone for voice calls with your bots."
         }
       ],
       "expo-localization",
@@ -45,9 +45,9 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Rakazo uses your photo library so you can attach images to a bot message.",
-          "cameraPermission": "Rakazo uses the camera so you can attach photos to a bot message.",
-          "microphonePermission": "Rakazo uses the microphone for voice calls with your bots."
+          "photosPermission": "KAMO uses your photo library so you can attach images to a bot message.",
+          "cameraPermission": "KAMO uses the camera so you can attach photos to a bot message.",
+          "microphonePermission": "KAMO uses the microphone for voice calls with your bots."
         }
       ],
       "expo-sharing",
@@ -63,9 +63,9 @@
         "usesNonExemptEncryption": false
       },
       "infoPlist": {
-        "NSCameraUsageDescription": "Rakazo uses the camera so you can attach photos to a bot message.",
-        "NSPhotoLibraryUsageDescription": "Rakazo uses your photo library so you can attach images to a bot message.",
-        "NSLocalNetworkUsageDescription": "Rakazo connects to a self-hosted Rakazo server on your local network.",
+        "NSCameraUsageDescription": "KAMO uses the camera so you can attach photos to a bot message.",
+        "NSPhotoLibraryUsageDescription": "KAMO uses your photo library so you can attach images to a bot message.",
+        "NSLocalNetworkUsageDescription": "KAMO connects to a self-hosted KAMO server on your local network.",
         "NSAppTransportSecurity": {
           "NSAllowsLocalNetworking": true
         }
