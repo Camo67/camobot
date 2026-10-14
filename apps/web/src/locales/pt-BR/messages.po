@@ -924,8 +924,8 @@ msgid "Choose file"
 msgstr "Escolher arquivo"
 
 #: src/pages/ModelSettingsOverlay.tsx
-msgid "Choose which connected model KAMO uses."
-msgstr "Escolha qual modelo conectado a KAMO usa."
+msgid "Choose which connected model Kamo uses."
+msgstr "Escolha qual modelo conectado a Kamo usa."
 
 #: src/pages/shell/dialogs.tsx
 msgid "Clear"
@@ -1759,8 +1759,8 @@ msgid "Create space"
 msgstr ""
 
 #: src/pages/Auth.tsx
-msgid "Create your KAMO"
-msgstr "Crie o seu KAMO"
+msgid "Create your Kamo"
+msgstr "Crie o seu Kamo"
 
 #: src/components/AskCard.tsx
 msgid "Created"
@@ -3343,8 +3343,8 @@ msgid "Paste a replacement key"
 msgstr "Cole uma chave de substituição"
 
 #: src/pages/ModelSettingsOverlay.tsx
-msgid "Paste the OpenAI-compatible address from your server. KAMO adds /v1 if needed."
-msgstr "Cole o endereço compatível com OpenAI do seu servidor. KAMO adiciona /v1 se necessário."
+msgid "Paste the OpenAI-compatible address from your server. Kamo adds /v1 if needed."
+msgstr "Cole o endereço compatível com OpenAI do seu servidor. Kamo adiciona /v1 se necessário."
 
 #: src/pages/VoiceSettingsOverlay.tsx
 msgid "Paste your API key"
@@ -3738,8 +3738,8 @@ msgid "Retry screen"
 msgstr ""
 
 #: src/pages/McpOAuthCallback.tsx
-msgid "Return to KAMO"
-msgstr "Retorno a KAMO"
+msgid "Return to Kamo"
+msgstr "Retorno a Kamo"
 
 #. placeholder {0}: doc.revision
 #: src/pages/KnowledgeSection.tsx
@@ -4097,8 +4097,8 @@ msgid "Sign in again"
 msgstr ""
 
 #: src/pages/Auth.tsx
-msgid "Sign in to KAMO"
-msgstr "Entrar no KAMO"
+msgid "Sign in to Kamo"
+msgstr "Entrar no Kamo"
 
 #: src/lib/user-error.ts
 msgid "Sign in to your existing account to link SSO"
@@ -4450,8 +4450,8 @@ msgid "This server is already connected. Disconnect it first to authorize again.
 msgstr "Este servidor já está conectado. Desconecte-o primeiro para autorizar novamente."
 
 #: src/pages/ModelSettingsOverlay.tsx
-msgid "This subscription sign-in is not available in KAMO yet. Use a deployment credential or choose another provider."
-msgstr "Este login de assinatura ainda não está disponível no KAMO. Use uma credencial de implantação ou escolha outro provedor."
+msgid "This subscription sign-in is not available in Kamo yet. Use a deployment credential or choose another provider."
+msgstr "Este login de assinatura ainda não está disponível no Kamo. Use uma credencial de implantação ou escolha outro provedor."
 
 #: src/pages/Artifacts.tsx
 msgid "This week"

@@ -1,6 +1,6 @@
-# Contributing to KAMO
+# Contributing to Kamo
 
-Thanks for helping improve KAMO. Keep changes focused and testable.
+Thanks for helping improve Kamo. Keep changes focused and testable.
 
 ## Run locally
 

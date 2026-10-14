@@ -1,6 +1,6 @@
 {
-  "name": "KAMO",
-  "short_name": "KAMO",
+  "name": "Kamo",
+  "short_name": "Kamo",
   "description": "Your team of always-on agents.",
   "start_url": "/",
   "display": "standalone",

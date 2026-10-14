@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Restricted egress for KAMO bot computers (SANDBOX_COMPUTER_EGRESS=restricted).
+# Restricted egress for Kamo bot computers (SANDBOX_COMPUTER_EGRESS=restricted).
 #
 # Computers keep full public-internet egress (browsing, DNS, apt, git over SSH)
 # but can no longer reach:
@@ -323,7 +323,7 @@ install_persistence() {
   fi
   cat >"$UNIT_PATH" <<EOF
 [Unit]
-Description=Restrict KAMO bot-computer egress (rakazo-c* bridges)
+Description=Restrict Kamo bot-computer egress (rakazo-c* bridges)
 After=docker.service
 Wants=docker.service
 

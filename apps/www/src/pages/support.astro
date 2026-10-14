@@ -9,21 +9,21 @@ const stars = await fetchGithubStars();
 const starsLabel = stars === null ? "Star" : formatStarCount(stars);
 ---
 
-<BaseLayout title="Support · KAMO" description="Get help with the KAMO app and self-hosted KAMO.">
+<BaseLayout title="Support · Kamo" description="Get help with the Kamo app and self-hosted Kamo.">
   <div class="container">
     <Header starsLabel={starsLabel} />
     <main id="main" class="privacy-copy">
-      <h1>KAMO support</h1>
+      <h1>Kamo support</h1>
       <p>
-        For help with the KAMO mobile app or a hosted KAMO account, email{" "}
+        For help with the Kamo mobile app or a hosted Kamo account, email{" "}
         <a href="mailto:hello@rakazo.com">hello@rakazo.com</a>. Include the email address on your
         account, what you expected to happen, and any error message you saw. Do not send passwords, API keys,
         access tokens, or other secrets.
       </p>
-      <h2>Self-hosted KAMO</h2>
+      <h2>Self-hosted Kamo</h2>
       <p>
         Start with the <a href={SELF_HOST_GUIDE_PATH}>self-hosting guide</a>. For reproducible bugs or feature requests,
-        open an issue in the <a href={`${GITHUB_URL}/issues`}>KAMO GitHub repository</a>.
+        open an issue in the <a href={`${GITHUB_URL}/issues`}>Kamo GitHub repository</a>.
       </p>
       <h2>Account deletion</h2>
       <p>

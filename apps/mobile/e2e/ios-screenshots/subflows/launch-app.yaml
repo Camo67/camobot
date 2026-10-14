@@ -4,7 +4,7 @@ appId: com.rakazo.app
 - launchApp:
     stopApp: true
 - extendedWaitUntil:
-    visible: "Account|Sign up for KAMO|Sign in to KAMO"
+    visible: "Account|Sign up for Kamo|Sign in to Kamo"
     timeout: 40000
 - runFlow:
     when:
@@ -17,5 +17,5 @@ appId: com.rakazo.app
           timeout: 15000
       - tapOn: "Sign out"
 - extendedWaitUntil:
-    visible: "Sign up for KAMO|Sign in to KAMO"
+    visible: "Sign up for Kamo|Sign in to Kamo"
     timeout: 20000

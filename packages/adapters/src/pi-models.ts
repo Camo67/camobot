@@ -206,18 +206,18 @@ function catalogBilling(
   const signInMeta = SUBSCRIPTION_SIGN_IN_PROVIDERS[providerId];
   if (signInMeta) return signInMeta.billing;
   if (providerId === LOCAL_PROVIDER_ID) {
-    return "Runs on infrastructure configured by the deployment owner. No model charges from KAMO.";
+    return "Runs on infrastructure configured by the deployment owner. No model charges from Kamo.";
   }
   if (providerId === OPENAI_COMPATIBLE_PROVIDER_ID) {
-    return "Runs on a URL you control. KAMO does not pay for model usage.";
+    return "Runs on a URL you control. Kamo does not pay for model usage.";
   }
   if (opts.oauth && !opts.apiKey) {
-    return `${name} subscription login is not in the KAMO UI yet. Skip if this deployment already has credentials.`;
+    return `${name} subscription login is not in the Kamo UI yet. Skip if this deployment already has credentials.`;
   }
   if (opts.apiKey) {
-    return `Uses your ${name} API key. KAMO does not pay for model usage.`;
+    return `Uses your ${name} API key. Kamo does not pay for model usage.`;
   }
-  return `Uses your ${name} key. KAMO does not pay for model usage.`;
+  return `Uses your ${name} key. Kamo does not pay for model usage.`;
 }
 
 export const scriptedCatalogEntry: PiCatalogEntry = {

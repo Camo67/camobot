@@ -40,9 +40,9 @@ export function AuthPage({ mode }: { mode: AuthMode }) {
   const title = sent ? (
     <Trans>Check your email</Trans>
   ) : mode === "in" ? (
-    <Trans>Sign in to KAMO</Trans>
+    <Trans>Sign in to Kamo</Trans>
   ) : mode === "up" ? (
-    <Trans>Create your KAMO</Trans>
+    <Trans>Create your Kamo</Trans>
   ) : (
     <Trans>Reset your password</Trans>
   );

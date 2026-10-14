@@ -1,7 +1,7 @@
-export const SITE_NAME = "KAMO";
+export const SITE_NAME = "Kamo";
 export const SITE_URL = "https://rakazo.com";
 export const SITE_DESCRIPTION =
-  "KAMO is an open source Grok Bot alternative for persistent AI teammates that do real work. Your keys, your model, your machine.";
+  "Kamo is an open source Grok Bot alternative for persistent AI teammates that do real work. Your keys, your model, your machine.";
 
 export const GITHUB_URL = "https://github.com/elie222/rakazo";
 export const IOS_APP_URL = "https://apps.apple.com/app/rakazo/id6801531099";

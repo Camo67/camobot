@@ -191,9 +191,9 @@ export default function SignIn() {
                 {resetSent
                   ? t("Check your email")
                   : mode === "in"
-                    ? t("Sign in to KAMO")
+                    ? t("Sign in to Kamo")
                     : mode === "up"
-                      ? t("Sign up for KAMO")
+                      ? t("Sign up for Kamo")
                       : t("Reset your password")}
               </Text>
               {resetSent ? (

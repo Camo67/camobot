@@ -1,5 +1,5 @@
 [Unit]
-Description=Run the KAMO production backup nightly
+Description=Run the Kamo production backup nightly
 
 [Timer]
 OnCalendar=*-*-* 02:15:00 UTC

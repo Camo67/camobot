@@ -7,7 +7,7 @@ export const COMPARED_ON = "October 7, 2026";
 
 export const GET_STARTED = {
   heading: "Get started",
-  copy: "Self-hosting is available now. Hosted KAMO Cloud is not generally available.",
+  copy: "Self-hosting is available now. Hosted Kamo Cloud is not generally available.",
   docsLabel: "Self-hosting guide",
   githubLabel: "View on GitHub",
 } as const;
@@ -65,7 +65,7 @@ export const ALTERNATIVES_HUB = {
   title:
     "Best Personal AI Agents in 2026: Grok Bot, Muse, Dots, Instinct, Hark Pro & Open Source Alternatives",
   description:
-    "A dated comparison of Grok Bot, Meta Muse, OpenAI Dots, Instinct, Hark Pro, OpenClaw, Hermes Agent, and KAMO. Licenses, self-hosting, model choice, price, setup, and whether you manage the agent from chat.",
+    "A dated comparison of Grok Bot, Meta Muse, OpenAI Dots, Instinct, Hark Pro, OpenClaw, Hermes Agent, and Kamo. Licenses, self-hosting, model choice, price, setup, and whether you manage the agent from chat.",
   h1: "Best Personal AI Agents in 2026: Grok Bot, Muse, Dots, Instinct, Hark Pro & Open Source Alternatives",
   intro:
     "These are different products that all take on work beyond a single reply. This page compares their public descriptions as of October 7, 2026. It is not a score, a benchmark, or a claim that one of them is best at every task.",
@@ -158,27 +158,27 @@ export const ALTERNATIVES: readonly Alternative[] = [
   {
     slug: "muse-alternative",
     name: "Muse",
-    summary: "Meta's personal AI agent, and what is different when you host KAMO yourself.",
-    title: "Open Source Meta Muse Alternative – KAMO",
+    summary: "Meta's personal AI agent, and what is different when you host Kamo yourself.",
+    title: "Open Source Meta Muse Alternative – Kamo",
     description:
-      "KAMO is an open source, self-hostable platform for persistent AI teammates. Compare it with Meta's Muse personal agent.",
+      "Kamo is an open source, self-hostable platform for persistent AI teammates. Compare it with Meta's Muse personal agent.",
     h1: "Open source Meta Muse alternative",
     otherName: "Muse",
     intro: [
       "Muse is Meta's personal AI agent, introduced on September 8, 2026. It runs on a virtual machine Meta operates, and you talk to it in the Muse app or WhatsApp. Meta says it can keep working after you close the app.",
-      "KAMO is open source software for persistent AI teammates. You choose the model and the computer, and you can run the stack yourself. This is a comparison of public descriptions, not a measured benchmark.",
+      "Kamo is open source software for persistent AI teammates. You choose the model and the computer, and you can run the stack yourself. This is a comparison of public descriptions, not a measured benchmark.",
     ],
     rows: [
       {
         topic: "Product",
-        rakazo: "Open source platform for persistent AI teammates. KAMO is in beta.",
+        rakazo: "Open source platform for persistent AI teammates. Kamo is in beta.",
         other:
           "Meta's personal AI agent. Meta says it takes on tasks and longer-term goals, rather than only answering questions.",
       },
       {
         topic: "Who runs it",
         rakazo:
-          "You do. Self-host with Docker, or point the desktop and mobile apps at a server you operate. Hosted KAMO Cloud is not generally available.",
+          "You do. Self-host with Docker, or point the desktop and mobile apps at a server you operate. Hosted Kamo Cloud is not generally available.",
         other:
           "Meta. Muse runs on Muse Secure VM, a dedicated cloud virtual machine for the agent and for data from services you connect. Meta's September 29, 2026 post describes Muse as available in the US and Canada.",
       },
@@ -231,19 +231,19 @@ export const ALTERNATIVES: readonly Alternative[] = [
     ],
     faq: [
       {
-        question: "Is KAMO a replacement for Muse?",
+        question: "Is Kamo a replacement for Muse?",
         answer:
-          "No. Muse is Meta's hosted personal agent, with the Muse app, WhatsApp, and a virtual machine Meta operates. KAMO is open source software for persistent AI teammates on infrastructure you control. Both can keep working beyond a single chat. They differ on hosting, model choice, and which products are built in.",
+          "No. Muse is Meta's hosted personal agent, with the Muse app, WhatsApp, and a virtual machine Meta operates. Kamo is open source software for persistent AI teammates on infrastructure you control. Both can keep working beyond a single chat. They differ on hosting, model choice, and which products are built in.",
       },
       {
-        question: "Can I self-host KAMO?",
+        question: "Can I self-host Kamo?",
         answer:
-          "Yes. Self-hosting is available now with published Docker images or a source checkout. Hosted KAMO Cloud is not generally available.",
+          "Yes. Self-hosting is available now with published Docker images or a source checkout. Hosted Kamo Cloud is not generally available.",
       },
       {
-        question: "Does KAMO include Muse on WhatsApp, shopping checkout, or AI glasses?",
+        question: "Does Kamo include Muse on WhatsApp, shopping checkout, or AI glasses?",
         answer:
-          "No. Those are Muse surfaces Meta describes. KAMO's clients are the web app, the Electron desktop app, and the Expo mobile app. Voice in KAMO uses a key you bring for ElevenLabs, OpenAI, Cartesia, or Fish Audio.",
+          "No. Those are Muse surfaces Meta describes. Kamo's clients are the web app, the Electron desktop app, and the Expo mobile app. Voice in Kamo uses a key you bring for ElevenLabs, OpenAI, Cartesia, or Fish Audio.",
       },
       {
         question: "Where do the Muse details come from?",
@@ -257,26 +257,26 @@ export const ALTERNATIVES: readonly Alternative[] = [
     slug: "dots-alternative",
     name: "Dots",
     summary: "OpenAI's always-on agents, in a shorter comparison.",
-    title: "Open Source OpenAI Dots Alternative – KAMO",
+    title: "Open Source OpenAI Dots Alternative – Kamo",
     description:
-      "KAMO is an open source, self-hostable platform for persistent AI teammates. Compare it with OpenAI's Dots agents.",
+      "Kamo is an open source, self-hostable platform for persistent AI teammates. Compare it with OpenAI's Dots agents.",
     h1: "Open source OpenAI Dots alternative",
     otherName: "Dots",
     intro: [
       "Dots are OpenAI's always-on agents, announced on September 29, 2026. OpenAI says they use GPT-6 Astra, have their own cloud computer, and are rolling out on eligible Pro, Business Premium, and Enterprise plans.",
-      "KAMO is separate software: open source AI teammates you can host yourself, with model credentials you bring.",
+      "Kamo is separate software: open source AI teammates you can host yourself, with model credentials you bring.",
     ],
     rows: [
       {
         topic: "Product",
-        rakazo: "Open source platform for persistent AI teammates. KAMO is in beta.",
+        rakazo: "Open source platform for persistent AI teammates. Kamo is in beta.",
         other:
           "Always-on agents from OpenAI. OpenAI says a dot learns from feedback and can work toward your goals continuously.",
       },
       {
         topic: "Who runs it",
         rakazo:
-          "You do. Self-host with Docker, or point the desktop and mobile apps at a server you operate. Hosted KAMO Cloud is not generally available.",
+          "You do. Self-host with Docker, or point the desktop and mobile apps at a server you operate. Hosted Kamo Cloud is not generally available.",
         other: "OpenAI. The announcement says each dot has its own cloud computer.",
       },
       {
@@ -314,12 +314,12 @@ export const ALTERNATIVES: readonly Alternative[] = [
     ],
     faq: [
       {
-        question: "Is KAMO a replacement for a dot?",
+        question: "Is Kamo a replacement for a dot?",
         answer:
-          "No. A dot is an OpenAI agent on an eligible ChatGPT plan. KAMO is open source software you run yourself, with your own model credentials.",
+          "No. A dot is an OpenAI agent on an eligible ChatGPT plan. Kamo is open source software you run yourself, with your own model credentials.",
       },
       {
-        question: "Do I need an OpenAI account to use KAMO?",
+        question: "Do I need an OpenAI account to use Kamo?",
         answer:
           "No. OpenAI is one supported model connection, not a requirement. You bring credentials for a provider you choose.",
       },
@@ -334,27 +334,27 @@ export const ALTERNATIVES: readonly Alternative[] = [
   {
     slug: "instinct-alternative",
     name: "Instinct",
-    summary: "A hosted personal assistant you text or call, and what is different when you host KAMO yourself.",
-    title: "Open Source Instinct AI Alternative – KAMO",
+    summary: "A hosted personal assistant you text or call, and what is different when you host Kamo yourself.",
+    title: "Open Source Instinct AI Alternative – Kamo",
     description:
-      "KAMO is an open source, self-hostable platform for persistent AI teammates. Compare it with Instinct, the personal assistant you text or call.",
+      "Kamo is an open source, self-hostable platform for persistent AI teammates. Compare it with Instinct, the personal assistant you text or call.",
     h1: "Open source Instinct AI alternative",
     otherName: "Instinct",
     intro: [
       "Instinct is a personal assistant operated by Spear Street Technology, Inc. The homepage says there are no new interfaces: you text or call it, and it can use a phone and a computer the way a person does. Examples on that page include disputing a bill, sending gifts, ordering groceries, scheduling a doctor's appointment, and planning a trip.",
-      "KAMO is open source software for persistent AI teammates. You choose the model and the computer, and you can run the stack yourself. This is a comparison of public descriptions, not a measured benchmark.",
+      "Kamo is open source software for persistent AI teammates. You choose the model and the computer, and you can run the stack yourself. This is a comparison of public descriptions, not a measured benchmark.",
     ],
     rows: [
       {
         topic: "Product",
-        rakazo: "Open source platform for persistent AI teammates. KAMO is in beta.",
+        rakazo: "Open source platform for persistent AI teammates. Kamo is in beta.",
         other:
           "A personal assistant. The privacy policy, revised August 26, 2026, calls it an autonomous assistant that thinks, plans, and acts on everyday tasks.",
       },
       {
         topic: "Who runs it",
         rakazo:
-          "You do. Self-host with Docker, or point the desktop and mobile apps at a server you operate. Hosted KAMO Cloud is not generally available.",
+          "You do. Self-host with Docker, or point the desktop and mobile apps at a server you operate. Hosted Kamo Cloud is not generally available.",
         other:
           "Spear Street Technology, Inc., under the Instinct name. The privacy policy describes a hosted service, including third-party hosting. It does not describe installing Instinct on a server you operate.",
       },
@@ -408,19 +408,19 @@ export const ALTERNATIVES: readonly Alternative[] = [
     ],
     faq: [
       {
-        question: "Is KAMO a replacement for Instinct?",
+        question: "Is Kamo a replacement for Instinct?",
         answer:
-          "No. Instinct is a hosted personal assistant you text or call, operated by Spear Street Technology, Inc. KAMO is open source software for persistent AI teammates on infrastructure you control. Both can take on tasks beyond a single reply. They differ on hosting, model choice, and who operates the computer.",
+          "No. Instinct is a hosted personal assistant you text or call, operated by Spear Street Technology, Inc. Kamo is open source software for persistent AI teammates on infrastructure you control. Both can take on tasks beyond a single reply. They differ on hosting, model choice, and who operates the computer.",
       },
       {
-        question: "Can I self-host KAMO?",
+        question: "Can I self-host Kamo?",
         answer:
-          "Yes. Self-hosting is available now with published Docker images or a source checkout. Hosted KAMO Cloud is not generally available.",
+          "Yes. Self-hosting is available now with published Docker images or a source checkout. Hosted Kamo Cloud is not generally available.",
       },
       {
-        question: "Does KAMO text, call, or buy things the way Instinct describes?",
+        question: "Does Kamo text, call, or buy things the way Instinct describes?",
         answer:
-          "No. Those are Instinct behaviors described on its homepage, privacy policy, and terms. KAMO's clients are the web app, the Electron desktop app, and the Expo mobile app. A bot can use a browser, terminal, files, and a desktop you run, and it can pause for approval at a boundary you set.",
+          "No. Those are Instinct behaviors described on its homepage, privacy policy, and terms. Kamo's clients are the web app, the Electron desktop app, and the Expo mobile app. A bot can use a browser, terminal, files, and a desktop you run, and it can pause for approval at a boundary you set.",
       },
       {
         question: "Where do the Instinct details come from?",
@@ -433,22 +433,22 @@ export const ALTERNATIVES: readonly Alternative[] = [
   {
     slug: "hermes-alternative",
     name: "Hermes",
-    summary: "Nous Research's open source agent. KAMO keeps setup and daily use in chat.",
-    title: "Open Source Hermes Agent Alternative – KAMO",
+    summary: "Nous Research's open source agent. Kamo keeps setup and daily use in chat.",
+    title: "Open Source Hermes Agent Alternative – Kamo",
     description:
-      "KAMO is an open source, self-hosted AI agent with a chat interface. Compare its setup with Hermes Agent, the MIT-licensed agent from Nous Research.",
+      "Kamo is an open source, self-hosted AI agent with a chat interface. Compare its setup with Hermes Agent, the MIT-licensed agent from Nous Research.",
     h1: "Open source Hermes Agent alternative",
     otherName: "Hermes Agent",
     intro: [
       "Hermes Agent is Nous Research's open source AI agent, released under the MIT license. You can run it on your own machine. The project site also offers optional Nous Portal credits and cloud hosting.",
-      "The main difference is simplicity. Like Grok Bot, KAMO is just chat: you set up the bot and manage it from that chat. Hermes documents a desktop app and a command-line quickstart. Desktop onboarding can reach a first message without the CLI. The quickstart is an installer, a setup wizard, a model command, and config files. Messaging platforms are a separate gateway.",
+      "The main difference is simplicity. Like Grok Bot, Kamo is just chat: you set up the bot and manage it from that chat. Hermes documents a desktop app and a command-line quickstart. Desktop onboarding can reach a first message without the CLI. The quickstart is an installer, a setup wizard, a model command, and config files. Messaging platforms are a separate gateway.",
       "Both are open source and can run on hardware you control. This comparison uses each project's public docs. It is not a measured benchmark.",
     ],
     sections: [
       {
         heading: "Setup",
         paragraphs: [
-          "KAMO's self-host path is the published Docker installer, or the desktop app starting that stack on this computer. You create an account and connect a model. From there it is just chat, on the web, desktop, and mobile apps. A new bot interviews you about the work, and you manage the bot from that chat. Routines are readable Markdown.",
+          "Kamo's self-host path is the published Docker installer, or the desktop app starting that stack on this computer. You create an account and connect a model. From there it is just chat, on the web, desktop, and mobile apps. A new bot interviews you about the work, and you manage the bot from that chat. Routines are readable Markdown.",
           "Hermes Desktop is a native app on macOS, Windows, and Linux. It shares config, API keys, sessions, skills, and memory with the CLI. The desktop guide says first-run onboarding gets you to a first message in seconds, and Choose provider later skips provider setup. Settings cover providers, models, tools, credentials, MCP servers, the gateway, and sessions. The app starts its own local `hermes serve` backend. That chat does not require the CLI or the web dashboard.",
           "The CLI quickstart is a separate path: a shell install (`install.sh` on Linux, macOS, and WSL2; a PowerShell script on Windows), then `hermes setup` (Quick Setup with Nous Portal, Full Setup, or Blank Slate) and `hermes model`. Secrets go in `~/.hermes/.env` and other settings in `~/.hermes/config.yaml`. The first terminal chat is `hermes` or `hermes --tui`. Telegram, Discord, Slack, WhatsApp, Signal, Email, and other platforms use `hermes gateway setup` and a gateway process you start separately. The desktop guide says that messaging gateway is a different process from the app's local backend.",
         ],
@@ -456,7 +456,7 @@ export const ALTERNATIVES: readonly Alternative[] = [
       {
         heading: "Day-to-day management",
         paragraphs: [
-          "Day to day, you manage KAMO from the same chat. Schedules, memory, and approval boundaries stay with that bot. Optional connectors can attach Slack, WhatsApp, Telegram, iMessage via Sendblue, and Feishu/Lark. They are not required to use the product.",
+          "Day to day, you manage Kamo from the same chat. Schedules, memory, and approval boundaries stay with that bot. Optional connectors can attach Slack, WhatsApp, Telegram, iMessage via Sendblue, and Feishu/Lark. They are not required to use the product.",
           "Hermes Desktop manages providers, models, tools, credentials, and sessions in Settings. The CLI quickstart sends a broken setup through `hermes doctor`, `hermes model`, `hermes setup`, `hermes sessions list`, and `hermes gateway status`. Tool access is `hermes tools`. Cron, skills, and MCP servers are further configuration. Messaging platforms still need that separately running gateway.",
         ],
       },
@@ -465,7 +465,7 @@ export const ALTERNATIVES: readonly Alternative[] = [
       {
         topic: "Setup",
         rakazo:
-          "Docker installer or the desktop app's local stack, then an account and a model. After that KAMO is just chat: a new bot interviews you, and you manage it from the chat.",
+          "Docker installer or the desktop app's local stack, then an account and a model. After that Kamo is just chat: a new bot interviews you, and you manage it from the chat.",
         other:
           "Desktop: first-run onboarding in the app, with Choose provider later if you skip a provider. The app shares `~/.hermes/` with the CLI and starts its own local backend. CLI: `hermes setup` and `hermes model`, then `hermes` or `hermes --tui`. Messaging platforms use `hermes gateway setup` and a separate gateway process.",
       },
@@ -478,7 +478,7 @@ export const ALTERNATIVES: readonly Alternative[] = [
       },
       {
         topic: "Product",
-        rakazo: "Open source platform for persistent AI teammates. KAMO is in beta.",
+        rakazo: "Open source platform for persistent AI teammates. Kamo is in beta.",
         other:
           "Nous Research describes a self-improving agent: it creates skills from experience, keeps memory across sessions, and can run scheduled jobs. The README also documents a terminal UI and a messaging gateway.",
       },
@@ -511,7 +511,7 @@ export const ALTERNATIVES: readonly Alternative[] = [
       {
         topic: "Where you talk to it",
         rakazo:
-          "The KAMO web, desktop, and mobile apps are the main surface. Optional connectors can attach Slack, WhatsApp, Telegram, iMessage via Sendblue, and Feishu/Lark.",
+          "The Kamo web, desktop, and mobile apps are the main surface. Optional connectors can attach Slack, WhatsApp, Telegram, iMessage via Sendblue, and Feishu/Lark.",
         other:
           "Hermes Desktop is a chat window that shares sessions with the CLI and TUI. The gateway adds Telegram, Discord, Slack, WhatsApp, Signal, Email, and other platforms, and the desktop guide says that gateway is a separate process.",
       },
@@ -532,19 +532,19 @@ export const ALTERNATIVES: readonly Alternative[] = [
     ],
     faq: [
       {
-        question: "Is KAMO simpler to set up than Hermes Agent?",
+        question: "Is Kamo simpler to set up than Hermes Agent?",
         answer:
-          "The documented paths are different. KAMO's self-host guide is a Docker installer, or the desktop app starting that stack, then an account and a model. After that KAMO is just chat, and you manage the bot from that chat. Hermes Desktop can reach a first message from in-app onboarding without the CLI, and you manage providers and tools in Settings. The CLI quickstart is `hermes setup`, `hermes model`, config files under `~/.hermes/`, and a terminal chat. Messaging apps are an extra gateway process on either path.",
+          "The documented paths are different. Kamo's self-host guide is a Docker installer, or the desktop app starting that stack, then an account and a model. After that Kamo is just chat, and you manage the bot from that chat. Hermes Desktop can reach a first message from in-app onboarding without the CLI, and you manage providers and tools in Settings. The CLI quickstart is `hermes setup`, `hermes model`, config files under `~/.hermes/`, and a terminal chat. Messaging apps are an extra gateway process on either path.",
       },
       {
-        question: "Is KAMO a drop-in replacement for Hermes Agent?",
+        question: "Is Kamo a drop-in replacement for Hermes Agent?",
         answer:
-          "No. KAMO does not import Hermes config, skills, or gateway sessions. Both are open source agents you can run yourself. They differ in license, interface, and how much of the setup lives in a chat versus Hermes's CLI and desktop settings.",
+          "No. Kamo does not import Hermes config, skills, or gateway sessions. Both are open source agents you can run yourself. They differ in license, interface, and how much of the setup lives in a chat versus Hermes's CLI and desktop settings.",
       },
       {
         question: "Do both keep the software on my machine?",
         answer:
-          "Yes for the software you run. A KAMO deployment stores its database and bot data on your host. Hermes stores config, memory, and skills on the machine where you install it, by default under `~/.hermes/`. In both cases, prompts go to the model provider you configure. Hermes's site also offers optional Nous Portal and cloud hosting.",
+          "Yes for the software you run. A Kamo deployment stores its database and bot data on your host. Hermes stores config, memory, and skills on the machine where you install it, by default under `~/.hermes/`. In both cases, prompts go to the model provider you configure. Hermes's site also offers optional Nous Portal and cloud hosting.",
       },
       {
         question: "Where do the Hermes details come from?",
@@ -557,28 +557,28 @@ export const ALTERNATIVES: readonly Alternative[] = [
   {
     slug: "hark-alternative",
     name: "Hark",
-    summary: "A hosted personal agent. After install, KAMO stays in chat on a stack you run.",
-    title: "Open Source Hark Pro Alternative – KAMO",
+    summary: "A hosted personal agent. After install, Kamo stays in chat on a stack you run.",
+    title: "Open Source Hark Pro Alternative – Kamo",
     description:
-      "KAMO is an open source, self-hosted AI agent with a chat interface. Compare it with Hark Pro, the hosted personal agent at hark.com.",
+      "Kamo is an open source, self-hosted AI agent with a chat interface. Compare it with Hark Pro, the hosted personal agent at hark.com.",
     h1: "Open source Hark Pro alternative",
     otherName: "Hark Pro",
     intro: [
       "Hark Pro is the personal agent at hark.com, launched October 6, 2026. It is a hosted app on the web, iOS, and Android. The launch article says every feature stays free, with $20 a month for twice the usage and $100 a month for ten times the usage.",
-      "Like Grok Bot, KAMO is just chat: you set up the bot and manage it from that chat. Hark Pro feels like a messaging app. The same article describes Home, Action Buttons, and Panels, Projects as dedicated chats with their own threads, and a cloud computer called Handoff that Hark operates.",
+      "Like Grok Bot, Kamo is just chat: you set up the bot and manage it from that chat. Hark Pro feels like a messaging app. The same article describes Home, Action Buttons, and Panels, Projects as dedicated chats with their own threads, and a cloud computer called Handoff that Hark operates.",
       "Hark introduced Handoff, its computer-use agent, on August 5, 2026. This comparison uses Hark's public pages. It is not a measured benchmark.",
     ],
     rows: [
       {
         topic: "Product",
-        rakazo: "Open source platform for persistent AI teammates. KAMO is in beta.",
+        rakazo: "Open source platform for persistent AI teammates. Kamo is in beta.",
         other:
           "Hark Pro, a hosted personal agent launched October 6, 2026, on the web, iOS, and Android. Hark says it remembers what you tell it and can act on the web.",
       },
       {
         topic: "Who runs it",
         rakazo:
-          "You do. Self-host with Docker, or point the desktop and mobile apps at a server you operate. Hosted KAMO Cloud is not generally available.",
+          "You do. Self-host with Docker, or point the desktop and mobile apps at a server you operate. Hosted Kamo Cloud is not generally available.",
         other:
           "The terms name Hark Labs, Inc. as the operator of the hosted service. They do not describe a self-host install, and they restrict reverse engineering the service.",
       },
@@ -592,7 +592,7 @@ export const ALTERNATIVES: readonly Alternative[] = [
       {
         topic: "Day-to-day management",
         rakazo:
-          "After you connect a model, KAMO is just chat. You manage the bot from that chat on the web, desktop, and mobile apps. Routines are readable Markdown.",
+          "After you connect a model, Kamo is just chat. You manage the bot from that chat on the web, desktop, and mobile apps. Routines are readable Markdown.",
         other:
           "The launch article describes a messaging-style conversation. Projects are dedicated chats with their own threads. Home, Action Buttons, and Panels sit beside that. The privacy policy says you can review, edit, or delete memory by asking the agent.",
       },
@@ -634,31 +634,31 @@ export const ALTERNATIVES: readonly Alternative[] = [
       {
         topic: "Where you use it",
         rakazo:
-          "The KAMO web, desktop, and mobile apps. Optional connectors can attach Slack, WhatsApp, Telegram, iMessage via Sendblue, and Feishu/Lark.",
+          "The Kamo web, desktop, and mobile apps. Optional connectors can attach Slack, WhatsApp, Telegram, iMessage via Sendblue, and Feishu/Lark.",
         other:
           "The web app, iOS, and Android. The privacy policy says you work through one ongoing conversation, and that inputs can include chat, voice, and file uploads. You must be 18 or older.",
       },
     ],
     faq: [
       {
-        question: "Is KAMO a replacement for Hark Pro?",
+        question: "Is Kamo a replacement for Hark Pro?",
         answer:
-          "No. Hark Pro is a hosted personal agent at hark.com, operated by Hark Labs, Inc. KAMO is open source software for persistent AI teammates on infrastructure you control. Both can take on tasks from a conversation. They differ on hosting, model choice, and who operates the computer.",
+          "No. Hark Pro is a hosted personal agent at hark.com, operated by Hark Labs, Inc. Kamo is open source software for persistent AI teammates on infrastructure you control. Both can take on tasks from a conversation. They differ on hosting, model choice, and who operates the computer.",
       },
       {
-        question: "Can I self-host KAMO?",
+        question: "Can I self-host Kamo?",
         answer:
-          "Yes. Self-hosting is available now with published Docker images or a source checkout. Hosted KAMO Cloud is not generally available.",
+          "Yes. Self-hosting is available now with published Docker images or a source checkout. Hosted Kamo Cloud is not generally available.",
       },
       {
         question: "How do you manage each one day to day?",
         answer:
-          "After a Docker or desktop install and a model connection, KAMO is just chat, like Grok Bot, and you manage the bot from that chat. Hark Pro feels like a messaging app. The launch article adds Home, Action Buttons, and Panels, and Projects as dedicated chats with their own threads.",
+          "After a Docker or desktop install and a model connection, Kamo is just chat, like Grok Bot, and you manage the bot from that chat. Hark Pro feels like a messaging app. The launch article adds Home, Action Buttons, and Panels, and Projects as dedicated chats with their own threads.",
       },
       {
-        question: "Does KAMO order things or run Handoff the way Hark describes?",
+        question: "Does Kamo order things or run Handoff the way Hark describes?",
         answer:
-          "No. Ordering, bill pay, and Handoff are Hark behaviors described on its site. KAMO's clients are the web app, the Electron desktop app, and the Expo mobile app. A bot can use a browser, terminal, files, and a desktop you run, and it can pause for approval at a boundary you set.",
+          "No. Ordering, bill pay, and Handoff are Hark behaviors described on its site. Kamo's clients are the web app, the Electron desktop app, and the Expo mobile app. A bot can use a browser, terminal, files, and a desktop you run, and it can pause for approval at a boundary you set.",
       },
       {
         question: "Where do the Hark Pro details come from?",
@@ -686,14 +686,14 @@ const GROK_HUB_CARD: HubCard = {
   href: GROK_ALTERNATIVE_PATH,
   name: "Grok Bot",
   h1: GROK_ALTERNATIVE_H1,
-  summary: "xAI's hosted bots, and what is different when you host KAMO yourself.",
+  summary: "xAI's hosted bots, and what is different when you host Kamo yourself.",
 };
 
 const OPENCLAW_HUB_CARD: HubCard = {
   href: OPENCLAW_ALTERNATIVE_PATH,
   name: "OpenClaw",
   h1: OPENCLAW_H1,
-  summary: "An open source agent you run yourself. KAMO stays in chat; OpenClaw's docs add a gateway and a config file.",
+  summary: "An open source agent you run yourself. Kamo stays in chat; OpenClaw's docs add a gateway and a config file.",
 };
 
 export const HUB_CARDS: readonly HubCard[] = [
@@ -740,7 +740,7 @@ export function alternativeMarkdown(alternative: Alternative): string {
     "",
     "## Comparison",
     "",
-    `| Topic | KAMO | ${alternative.otherName} |`,
+    `| Topic | Kamo | ${alternative.otherName} |`,
     "| --- | --- | --- |",
     ...alternative.rows.map(
       (row) => `| ${cell(row.topic)} | ${cell(row.rakazo)} | ${cell(row.other)} |`,

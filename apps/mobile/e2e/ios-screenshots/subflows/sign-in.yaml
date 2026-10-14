@@ -3,11 +3,11 @@ appId: com.rakazo.app
 - runFlow: launch-app.yaml
 - runFlow:
     when:
-      visible: "Sign up for KAMO"
+      visible: "Sign up for Kamo"
     commands:
       - tapOn: "Sign in"
 - extendedWaitUntil:
-    visible: "Sign in to KAMO"
+    visible: "Sign in to Kamo"
     timeout: 15000
 - tapOn: "Email"
 - inputText: ${RAKAZO_ACTIVE_EMAIL}

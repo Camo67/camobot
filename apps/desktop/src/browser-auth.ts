@@ -83,11 +83,11 @@ export async function openBrowserAuth(
             !code ||
             target.searchParams.has("error")
           ) {
-            response.writeHead(400).end("Sign-in callback rejected. Return to KAMO to retry.");
+            response.writeHead(400).end("Sign-in callback rejected. Return to Kamo to retry.");
             return;
           }
           consumed = true;
-          response.end("You can close this tab and return to KAMO.", close);
+          response.end("You can close this tab and return to Kamo.", close);
           options.onCallback({ code, state });
         });
         server.requestTimeout = 10_000;

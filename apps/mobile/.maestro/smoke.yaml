@@ -1,21 +1,21 @@
 appId: com.rakazo.app
-name: KAMO mobile smoke
+name: Kamo mobile smoke
 ---
 - launchApp:
     clearState: true
 
-- assertVisible: "Sign in to KAMO"
+- assertVisible: "Sign in to Kamo"
 - assertVisible: "Sign up"
 - tapOn: "Sign up"
-- assertVisible: "Sign up for KAMO"
+- assertVisible: "Sign up for Kamo"
 - assertVisible: "Name"
 - tapOn: "Sign in"
-- assertVisible: "Sign in to KAMO"
+- assertVisible: "Sign in to Kamo"
 - tapOn: "Email"
 - inputText: ${RAKAZO_E2E_EMAIL}
 - tapOn: "Password"
 - inputText: ${RAKAZO_E2E_PASSWORD}
-- tapOn: "Sign in to KAMO"
+- tapOn: "Sign in to Kamo"
 - tapOn: "Sign in"
 
 - extendedWaitUntil:

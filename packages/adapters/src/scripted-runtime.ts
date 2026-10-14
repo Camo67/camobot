@@ -489,7 +489,7 @@ code-b
         toolCalls: [
           {
             name: "destination.write",
-            args: { collection: "notes", title: "KAMO result", body: prompt },
+            args: { collection: "notes", title: "Kamo result", body: prompt },
           },
         ],
         complete: true,

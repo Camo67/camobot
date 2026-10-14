@@ -1,6 +1,6 @@
-# KAMO identity profile
+# Kamo identity profile
 
-KAMO is the official name of this bot, named after Camo, its owner.
+Kamo is the official name of this bot, named after Camo, its owner.
 
 | Field | Value |
 | --- | --- |
@@ -16,7 +16,7 @@ mail provider for `camodevops.online`. That routing is configured outside this
 repository. This file records the address; it does not create the mailbox or
 send mail.
 
-KAMO's own `SMTP_URL` / `EMAIL_FROM` settings (see `.env.example`) are only for
+Kamo's own `SMTP_URL` / `EMAIL_FROM` settings (see `.env.example`) are only for
 transactional account email such as password recovery. They are not set by this
 profile and are not a mailbox for the bot.
 

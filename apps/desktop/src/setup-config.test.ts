@@ -51,12 +51,12 @@ describe("server address normalization", () => {
     expect(normalizeServerUrl("http://169.254.169.254")).toBeNull();
     expect(normalizeServerUrl("http://169.254.1.1:80")).toBeNull();
     expect(normalizeServerUrl("http://[fe80::1]:3100")).toBeNull();
-    // HTTPS to link-local still normalizes; the health probe must match KAMO.
+    // HTTPS to link-local still normalizes; the health probe must match Kamo.
     expect(normalizeServerUrl("https://169.254.169.254")).toBe("https://169.254.169.254");
   });
 
   it.each(["", "   ", "not a url", "ftp://example.com", "file:///etc/passwd", "http://"])(
-    "rejects an address that cannot reach a KAMO server (%s)",
+    "rejects an address that cannot reach a Kamo server (%s)",
     (value) => {
       expect(normalizeServerUrl(value)).toBeNull();
     },
@@ -213,7 +213,7 @@ describe("remote-content isolation", () => {
   });
 });
 
-describe("KAMO health response", () => {
+describe("Kamo health response", () => {
   it("requires the public RPC health contract", () => {
     expect(isRakazoHealth({ json: { ok: true, version: "0.1.0" } })).toBe(true);
     expect(isRakazoHealth({ json: { ok: true } })).toBe(false);

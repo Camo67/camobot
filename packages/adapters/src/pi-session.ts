@@ -147,7 +147,7 @@ export interface PiSessionRecorder {
 
 /**
  * Persists the low-level Agent transcript using Pi's native JSONL session format.
- * This is deliberately a recorder only: KAMO remains responsible for running
+ * This is deliberately a recorder only: Kamo remains responsible for running
  * the agent and for its product history in Postgres.
  */
 export class PiJsonlSessionRecorder implements PiSessionRecorder {

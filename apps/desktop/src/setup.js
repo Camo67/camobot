@@ -23,10 +23,10 @@
   const PHASE_LABELS = {
     "checking-docker": "Getting ready…",
     preparing: "Getting ready…",
-    pulling: "Downloading KAMO…",
-    starting: "Starting KAMO…",
+    pulling: "Downloading Kamo…",
+    starting: "Starting Kamo…",
     "waiting-healthy": "Almost ready…",
-    ready: "KAMO is ready.",
+    ready: "Kamo is ready.",
   };
   const TERMINAL_PHASES = new Set([
     "idle",
@@ -266,7 +266,7 @@
       const result = await bridge.test(value);
       if (result.ok) {
         serverUrl.value = result.url;
-        setStatus(`KAMO answered at ${result.url}.`, "ok");
+        setStatus(`Kamo answered at ${result.url}.`, "ok");
       } else {
         setStatus(result.error ?? "Could not reach that address.", "error");
       }
@@ -362,7 +362,7 @@
         continueButton.focus();
       }
     } catch {
-      setStatus("Setup could not start. Quit KAMO and try again.", "error");
+      setStatus("Setup could not start. Quit Kamo and try again.", "error");
       setBusy(true);
     }
   }

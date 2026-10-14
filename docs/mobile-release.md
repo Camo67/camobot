@@ -1,10 +1,10 @@
 # Mobile builds and store releases
 
-KAMO's public repository does not contain production App Store Connect,
+Kamo's public repository does not contain production App Store Connect,
 Google Play, Apple team, or private EAS submission identifiers. Those values
 belong in the release operator's private configuration.
 
-Self-hosters normally do not need to publish their own mobile app: the KAMO
+Self-hosters normally do not need to publish their own mobile app: the Kamo
 client can select a compatible server from the sign-in screen. If you distribute
 your own branded build, use your own Expo and store accounts.
 
@@ -41,7 +41,7 @@ and review account on a physical device.
 
 ## Android APK
 
-Until KAMO is on Google Play, Android users can install an APK. Run the
+Until Kamo is on Google Play, Android users can install an APK. Run the
 `release-android-apk` workflow from `main` in GitHub Actions when native code
 changes. It builds the `android-apk` EAS profile, signed with the project's
 managed keystore, and replaces the rolling `android` GitHub release, so the
