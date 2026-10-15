@@ -1,8 +1,7 @@
 import { ORPCError } from "@orpc/server";
-import type { AdapterContext } from "@rakazo/adapter-kit";
+import type { AdapterContext, SecretStore } from "@rakazo/adapter-kit";
 import {
   createVoiceProvider,
-  type EncryptedSecretStore,
   isFishSpeechModelId,
   isVoiceProviderId,
   listVoiceCatalog,
@@ -30,7 +29,7 @@ import { withSerializableRetry } from "./serializable-retry.js";
 
 export interface VoiceDeps {
   prisma: PrismaClient;
-  secrets: EncryptedSecretStore;
+  secrets: SecretStore;
 }
 
 export { listVoiceCatalog };
@@ -107,7 +106,7 @@ export async function loadVoiceCredential(deps: VoiceDeps, actor: Actor, provide
     where: { id: cred.secretId, userId: actor.userId, spaceId: null },
   });
   if (!secret) return null;
-  return { cred, apiKey: deps.secrets.load(secret.ciphertext, secret.id) };
+  return { cred, apiKey: await deps.secrets.load(secret.ciphertext, secret.id) };
 }
 
 export async function resolveVoiceTarget(
@@ -369,7 +368,7 @@ export async function synthesizeVoice(
 export async function transcribeVoice(
   deps: VoiceDeps,
   actor: Actor,
-  input: { audio: Uint8Array; mimeType: string; signal?: AbortSignal },
+  input: { audio: Uint8Array; mimeType: string; language?: string; signal?: AbortSignal },
 ) {
   const loaded = await loadDefaultVoiceCredential(deps, actor);
   if (!loaded) throw new NoVoiceConfigured("key");
@@ -386,6 +385,7 @@ export async function transcribeVoice(
     {
       audio: input.audio,
       mimeType: input.mimeType || "audio/webm",
+      language: input.language,
       apiKey: loaded.apiKey,
       signal: input.signal,
     },
@@ -435,11 +435,13 @@ export function mountVoiceHttpRoutes(
     if (raw === null) return c.json({ error: "Request body is too large." }, 413);
     const body = parseVoiceRequestBody(raw);
     const audioBase64 = String((body as { audioBase64?: unknown }).audioBase64 ?? "");
+    const language = optionalString((body as { language?: unknown }).language);
     try {
       const audio = decodeAudioBase64(audioBase64);
       const result = await transcribeVoice(deps, actor, {
         audio,
         mimeType: String((body as { mimeType?: unknown }).mimeType ?? "audio/webm"),
+        language,
         signal: c.req.raw.signal,
       });
       return c.json({ text: result.text });

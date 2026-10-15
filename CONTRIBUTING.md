@@ -1,6 +1,6 @@
-# Contributing to Rakazo
+# Contributing to Kamo
 
-Thanks for helping improve Rakazo. Keep changes focused and testable.
+Thanks for helping improve Kamo. Keep changes focused and testable.
 
 ## Run locally
 

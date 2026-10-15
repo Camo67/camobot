@@ -43,7 +43,7 @@ export function resolveSpaceComputerLimit(
  * A computer runs Xvfb, a window manager and a full Chromium on behalf of an
  * agent that decides for itself what to open. #343 gave these containers a
  * pids ceiling, but Memory and NanoCpus are still unset, so one runaway page is
- * a host-wide memory and CPU event that takes every other bot and the Rakazo
+ * a host-wide memory and CPU event that takes every other bot and the Kamo
  * services down with it. Every service in docker-compose.prod.yml already
  * carries mem_limit; this applies the same discipline to the containers that
  * actually run untrusted page content.
@@ -179,16 +179,56 @@ export function computerBridgeNameFor(botId: string) {
   return `rakazo-c${hash}`;
 }
 
+/**
+ * Owner label for this install's computer networks, which can share a Docker host
+ * with other installs that name theirs the same way. It is derived from where the
+ * computer homes live (see computerHomeStorage) and hashed to keep host paths out.
+ */
+export function computerNetworkOwnerFor(
+  dataDir: string,
+  info: Docker.ContainerInspectInfo | undefined,
+) {
+  const mount = info?.Mounts.find((entry) => entry.Destination === dataDir);
+  const root =
+    mount?.Type === "volume" ? `volume:${mount.Name}` : `path:${mount?.Source ?? dataDir}`;
+  return createHash("sha256").update(root).digest("hex").slice(0, 32);
+}
+
 /** docker.createNetwork payload for a bot's computer network. */
-export function computerNetworkCreateOptions(botId: string, egress: ComputerEgressMode = "open") {
+export function computerNetworkCreateOptions(
+  botId: string,
+  owner: string,
+  egress: ComputerEgressMode = "open",
+) {
   return {
     Name: computerNetworkNameFor(botId),
     Driver: "bridge",
     CheckDuplicate: true,
+    Labels: { "rakazo.computerOwner": owner, "rakazo.botId": botId },
     ...(egress === "restricted"
       ? { Options: { "com.docker.network.bridge.name": computerBridgeNameFor(botId) } }
       : {}),
   };
+}
+
+/**
+ * Docker Engine API 1.48 added GwPriority. Older supported daemons must receive
+ * the original connect payload, because their API cannot preserve this setting.
+ */
+export function screenPeerNetworkConnectOptions(
+  containerId: string,
+  apiVersion: string,
+): Docker.NetworkConnectOptions {
+  const version = /^(\d+)\.(\d+)$/.exec(apiVersion);
+  const supportsGatewayPriority = Boolean(
+    version && (Number(version[1]) > 1 || (Number(version[1]) === 1 && Number(version[2]) >= 48)),
+  );
+  if (!supportsGatewayPriority) return { Container: containerId };
+
+  // @types/dockerode 4.0.1 predates the API field; the server accepts the
+  // endpoint setting as part of the standard Engine API payload.
+  const endpointConfig: Docker.EndpointSettings & { GwPriority: number } = { GwPriority: -1 };
+  return { Container: containerId, EndpointConfig: endpointConfig };
 }
 
 export function hostComputerUser(uid = process.getuid?.(), gid = process.getgid?.()): string {

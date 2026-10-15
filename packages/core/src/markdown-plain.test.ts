@@ -2,6 +2,12 @@ import { describe, expect, it, vi } from "vitest";
 import { plainTextFromMarkdown, truncatedPlainText } from "./markdown-plain.js";
 
 describe("plainTextFromMarkdown", () => {
+  it("reads only a bounded preview of the source unless the caller raises the limit", () => {
+    const long = `${"word ".repeat(2_000)}the end`;
+    expect(plainTextFromMarkdown(long)).not.toContain("the end");
+    expect(plainTextFromMarkdown(long, { maxSource: 20_000 })).toContain("the end");
+  });
+
   it("does not rebuild the placeholder pattern for each escaped character", () => {
     const markerText = "\uE000".repeat(128);
     const source = `${markerText}${"\\*".repeat(128)} <_ops_@example.test>`;
@@ -154,7 +160,7 @@ describe("plainTextFromMarkdown", () => {
   });
 
   it("still closes a fence that ends inside a long reply", () => {
-    const source = "```\nkeep *stars*\n```\n**after** " + "z".repeat(6_000);
+    const source = `\`\`\`\nkeep *stars*\n\`\`\`\n**after** ${"z".repeat(6_000)}`;
     const preview = plainTextFromMarkdown(source);
     expect(preview.startsWith("keep *stars* after")).toBe(true);
     expect(preview).not.toContain("```");
@@ -162,8 +168,7 @@ describe("plainTextFromMarkdown", () => {
   });
 
   it("preserves a code block when the preview cap cuts off its closing fence", () => {
-    const source =
-      "```ts\nkeep *stars* and <tag> and | a | b |\n" + "y".repeat(6_000) + "\n```\nAFTER";
+    const source = `\`\`\`ts\nkeep *stars* and <tag> and | a | b |\n${"y".repeat(6_000)}\n\`\`\`\nAFTER`;
     const preview = plainTextFromMarkdown(source);
     expect(preview.startsWith("keep *stars* and <tag> and | a | b |")).toBe(true);
     expect(preview).not.toContain("```");
@@ -327,5 +332,40 @@ describe("truncatedPlainText", () => {
     const preview = truncatedPlainText(`${"a".repeat(179)}\u{1F600}b`, 180);
     expect(preview).toBe("a".repeat(179));
     expect(preview).not.toMatch(/[\uD800-\uDFFF]/);
+  });
+});
+
+describe("plainTextFromMarkdown comparison signs", () => {
+  it("keeps a less-than before a dollar amount", () => {
+    expect(plainTextFromMarkdown("Costs < $5, so it's cheap")).toBe("Costs < $5, so it's cheap");
+  });
+
+  it("keeps a less-than between variables", () => {
+    expect(plainTextFromMarkdown("Is a < b? Yes, it's true.")).toBe("Is a < b? Yes, it's true.");
+  });
+
+  it("keeps spaced comparisons on both sides", () => {
+    expect(plainTextFromMarkdown("If 1 < 2 and 3 > 2 then ok")).toBe("If 1 < 2 and 3 > 2 then ok");
+  });
+
+  it("keeps less-or-equal and greater-or-equal", () => {
+    expect(plainTextFromMarkdown("keep <= 10 and >= 2")).toBe("keep <= 10 and >= 2");
+  });
+
+  it("keeps a less-than followed directly by a digit", () => {
+    expect(plainTextFromMarkdown("1 <2 and 3> 4")).toBe("1 <2 and 3> 4");
+  });
+
+  it("keeps unspaced comparisons that look like tags", () => {
+    expect(plainTextFromMarkdown("Check a<b+1 and c>d")).toBe("Check a<b+1 and c>d");
+    expect(plainTextFromMarkdown("x<y && z>0")).toBe("x<y && z>0");
+  });
+
+  it("still strips real tags", () => {
+    expect(plainTextFromMarkdown("Use <b>bold</b> now")).toBe("Use bold now");
+  });
+
+  it("still strips comments", () => {
+    expect(plainTextFromMarkdown("a <!-- note --> b")).toBe("a b");
   });
 });

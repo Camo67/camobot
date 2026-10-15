@@ -4,11 +4,8 @@ import type {
   ConnectorEvent,
   ConnectorTool,
 } from "@rakazo/adapter-kit";
-import {
-  type ComposioCatalogItem,
-  type ComposioProvider,
-  filterCatalog,
-} from "./composio-connector.js";
+import type { ComposioCatalogItem, ComposioProvider } from "./composio-connector.js";
+import { expandComposioMultiExecute, filterCatalog } from "./composio-connector.js";
 import {
   DEFAULT_RAKAZO_EMULATED_RELEASES,
   type EmulatedGithubRelease,
@@ -186,11 +183,11 @@ function seedMailbox(): Mailbox {
       {
         messageId: "18c5f5d1a2b3c4d5",
         threadId: "18c5f5d1a2b3c4d5",
-        subject: "Welcome to Rakazo",
+        subject: "Welcome to Kamo",
         sender: "hello@rakazo.test",
         to: "me@example.test",
         snippet: "Your inbox is ready for agent workflows.",
-        messageText: "Your inbox is ready for agent workflows.\n\n— Rakazo",
+        messageText: "Your inbox is ready for agent workflows.\n\n— Kamo",
         labelIds: ["INBOX", "UNREAD"],
         internalDate: String(base),
       },
@@ -400,15 +397,29 @@ export class ComposioEmulator implements ComposioProvider {
   }
 
   async *execute(call: ConnectorCall, context: AdapterContext): AsyncIterable<ConnectorEvent> {
-    const args = call.args ?? {};
-    const result = call.tool.startsWith("GMAIL_")
-      ? this.executeGmail(call.tool, args, context.userId)
-      : (RELEASE_WATCH_GITHUB_TOOL_NAMES as readonly string[]).includes(call.tool) ||
-          call.tool === "GITHUB_EMULATED_ACTION"
-        ? this.executeGithub(call.tool, args)
-        : { ok: true, tool: call.tool, args };
-    this.executions.push({ userId: context.userId, tool: call.tool, args });
-    yield { type: "result", data: result };
+    let planned: ReturnType<typeof expandComposioMultiExecute>;
+    try {
+      planned = expandComposioMultiExecute(call.tool, call.args ?? {});
+    } catch (error) {
+      yield {
+        type: "error",
+        message: error instanceof Error ? error.message : String(error),
+      };
+      return;
+    }
+    const results: Record<string, unknown>[] = [];
+    for (const item of planned) {
+      const args = item.args;
+      const result = item.tool.startsWith("GMAIL_")
+        ? this.executeGmail(item.tool, args, context.userId)
+        : (RELEASE_WATCH_GITHUB_TOOL_NAMES as readonly string[]).includes(item.tool) ||
+            item.tool === "GITHUB_EMULATED_ACTION"
+          ? this.executeGithub(item.tool, args)
+          : { ok: true, tool: item.tool, args };
+      this.executions.push({ userId: context.userId, tool: item.tool, args });
+      results.push(result);
+    }
+    yield { type: "result", data: results.length === 1 ? results[0] : results };
   }
 
   async begin(

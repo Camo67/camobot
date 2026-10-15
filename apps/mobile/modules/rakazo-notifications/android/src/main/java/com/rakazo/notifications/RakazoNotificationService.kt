@@ -324,9 +324,9 @@ class RakazoNotificationService : Service() {
       packageManager.getLaunchIntentForPackage(packageName) ?: Intent(Intent.ACTION_VIEW, Uri.parse("rakazo://"))
     } else {
       val destination = if (run.groupId != null) {
-        "rakazo://group-thread?groupId=${Uri.encode(run.groupId)}&name=${Uri.encode(run.groupName.orEmpty())}&spaceId=${Uri.encode(run.spaceId)}"
+        "rakazo://group-thread?groupId=${Uri.encode(run.groupId)}&name=${Uri.encode(run.groupName.orEmpty())}&spaceId=${Uri.encode(run.spaceId)}&threadId=${Uri.encode(run.threadId)}"
       } else {
-        "rakazo://thread?botId=${Uri.encode(run.botId)}&name=${Uri.encode(run.botName)}&spaceId=${Uri.encode(run.spaceId)}"
+        "rakazo://thread?botId=${Uri.encode(run.botId)}&name=${Uri.encode(run.botName)}&spaceId=${Uri.encode(run.spaceId)}&threadId=${Uri.encode(run.threadId)}"
       }
       Intent(
         Intent.ACTION_VIEW,
@@ -690,12 +690,19 @@ private fun htmlTagClose(text: String, open: Int): Int {
   return if (quote != null && text.length > open + 1) text.length - 1 else -1
 }
 
-/** `<...>` spans drop to a single space. Mirrors stripHtmlTags. */
+private val HTML_TAG_START =
+  Regex("""(?:[!?]|/?[A-Za-z][A-Za-z0-9-]*(?:[/>]|\s+(?:[/>]|[A-Za-z_:@][^\s"'<>/=&]*(?:[\s=/>]|$))))""")
+
+/** A tag opens with `!`, `?`, or a name followed by whitespace, `/` or `>` and attribute-like content. Mirrors isHtmlTagStart. */
+private fun isHtmlTagStart(text: String, at: Int): Boolean =
+  HTML_TAG_START.matchAt(text, at + 1) != null
+
+/** `<...>` spans that open like a tag drop to a single space. Mirrors stripHtmlTags. */
 private fun stripHtmlTags(text: String): String {
   val out = StringBuilder()
   var i = 0
   while (i < text.length) {
-    if (text[i] == '<') {
+    if (text[i] == '<' && isHtmlTagStart(text, i)) {
       val close = htmlTagClose(text, i)
       if (close != -1) {
         out.append(' ')
