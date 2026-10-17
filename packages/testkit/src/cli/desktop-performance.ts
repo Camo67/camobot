@@ -220,9 +220,9 @@ function startPreview(env: NodeJS.ProcessEnv) {
 
 async function packagedExecutable() {
   const out = path.join(desktopRoot, "out");
-  const candidates = process.platform === "darwin" ? await findNamed(out, "Rakazo.app") : [];
+  const candidates = process.platform === "darwin" ? await findNamed(out, "Kamo.app") : [];
   if (process.platform === "darwin" && candidates[0]) {
-    return path.join(candidates[0], "Contents/MacOS/Rakazo");
+    return path.join(candidates[0], "Contents/MacOS/Kamo");
   }
   const desktopRequire = createRequire(path.join(desktopRoot, "package.json"));
   return desktopRequire("electron") as string;
@@ -749,7 +749,7 @@ function environmentFingerprint(versions: { electron?: string; chrome?: string }
 
 async function measureBundles() {
   const web = await directorySize(path.join(webRoot, "dist"));
-  const applications = await findNamed(path.join(desktopRoot, "out"), "Rakazo.app");
+  const applications = await findNamed(path.join(desktopRoot, "out"), "Kamo.app");
   const desktop = applications[0] ? await directorySize(applications[0]) : null;
   return { web, desktop };
 }
