@@ -788,4 +788,16 @@ export const DE_MESSAGES: Record<string, string> = {
     "Melde dich bei deinem bestehenden Konto an, um SSO zu verknüpfen",
   "SSO is temporarily unavailable. Try again.":
     "SSO ist vorübergehend nicht verfügbar. Versuche es erneut.",
+  Agents: "Agenten",
+  "Enter the token": "Token eingeben",
+  Machines: "Geräte",
+  Monitor: "Monitor",
+  Offline: "Offline",
+  Online: "Online",
+  "Open handovers": "Offene Übergaben",
+  "The monitor rejected the token": "Der Monitor hat das Token abgelehnt",
+  Token: "Token",
+  Unchanged: "Unverändert",
+  "{up} up · {degraded} degraded · {down} down":
+    "{up} aktiv · {degraded} eingeschränkt · {down} ausgefallen",
 };

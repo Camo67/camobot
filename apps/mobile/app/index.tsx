@@ -591,6 +591,12 @@ function Home() {
           onPress: () => router.push("/artifacts"),
         },
         {
+          type: "button" as const,
+          accessibilityLabel: t("Monitor"),
+          icon: { type: "sfSymbol" as const, name: "waveform.path.ecg" },
+          onPress: () => router.push("/monitor"),
+        },
+        {
           type: "menu" as const,
           accessibilityLabel: t("Create"),
           icon: { type: "sfSymbol" as const, name: "plus" },
@@ -817,6 +823,9 @@ function Home() {
               onPress={() => router.push("/artifacts")}
             >
               <NativeSymbol ios="square.stack.3d.up" android="layers-outline" size={17} />
+            </HeaderButton>
+            <HeaderButton accessibilityLabel={t("Monitor")} onPress={() => router.push("/monitor")}>
+              <NativeSymbol ios="waveform.path.ecg" android="pulse-outline" size={17} />
             </HeaderButton>
             <MenuView
               actions={[

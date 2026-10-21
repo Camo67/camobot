@@ -792,4 +792,16 @@ export const RU_MESSAGES: Record<string, string> = {
   "Sign in to your existing account to link SSO":
     "Войдите в существующий аккаунт, чтобы привязать SSO",
   "SSO is temporarily unavailable. Try again.": "SSO временно недоступен. Попробуйте снова.",
+  Agents: "Агенты",
+  "Enter the token": "Введите токен",
+  Machines: "Устройства",
+  Monitor: "Мониторинг",
+  Offline: "Не в сети",
+  Online: "В сети",
+  "Open handovers": "Открытые передачи",
+  "The monitor rejected the token": "Мониторинг отклонил токен",
+  Token: "Токен",
+  Unchanged: "Без изменений",
+  "{up} up · {degraded} degraded · {down} down":
+    "Работают: {up} · с перебоями: {degraded} · недоступны: {down}",
 };
