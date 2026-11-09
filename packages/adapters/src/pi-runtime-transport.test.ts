@@ -1,3 +1,5 @@
+import { createServer } from "node:http";
+import type { AddressInfo } from "node:net";
 import type {
   Api,
   Context,
@@ -5,8 +7,10 @@ import type {
   ModelsSimpleStreamOptions,
   ProviderHeaders,
 } from "@earendil-works/pi-ai";
+import { builtinModels } from "@earendil-works/pi-ai/providers/all";
 import { DEFAULT_MODEL_MAX_TOKENS } from "@rakazo/contracts";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { localProvider } from "./pi-local-provider.js";
 import { DEFAULT_MODEL_STREAM_MAX_RETRIES, MODEL_STREAM_TIMEOUT_MS } from "./pi-runtime-limits.js";
 import { resolveRuntimeModel } from "./pi-runtime-models.js";
 import {
@@ -438,4 +442,51 @@ describe("Pi runtime transport", () => {
       expect(options).not.toHaveProperty("cacheRetention");
     },
   );
+});
+
+describe("local model transport routing", () => {
+  it("routes actual local provider SSE through matching fetch without losing cancellation", async () => {
+    const server = createServer((_req, res) => {
+      res.writeHead(200, { "content-type": "text/event-stream" });
+      res.end(
+        'data: {"id":"test","choices":[{"index":0,"delta":{"content":"LOCAL_OK"},"finish_reason":null}]}\n\ndata: {"id":"test","choices":[{"index":0,"delta":{},"finish_reason":"stop"}]}\n\ndata: [DONE]\n\n',
+      );
+    });
+    await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
+    vi.stubEnv("RAKAZO_LOCAL_MODELS", "test-local");
+    vi.stubEnv(
+      "RAKAZO_LOCAL_MODELS_URL",
+      `http://127.0.0.1:${(server.address() as AddressInfo).port}/v1`,
+    );
+    const models = builtinModels();
+    models.setProvider(localProvider()!);
+    const model = models.getModel("local", "test-local")!;
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() => {
+        throw new Error("default global fetch must not serve local models");
+      }),
+    );
+    try {
+      const stream = reliableModelStream(
+        models,
+        model,
+        { messages: [{ role: "user", content: "test", timestamp: 0 }] },
+        { apiKey: "local", signal: AbortSignal.timeout(2000) },
+        undefined,
+      );
+      for await (const _event of stream) {
+        /* consume */
+      }
+      const result = await stream.result();
+      expect(result.stopReason).toBe("stop");
+      expect(result.content).toEqual([{ type: "text", text: "LOCAL_OK" }]);
+      expect(globalThis.fetch).not.toHaveBeenCalled();
+    } finally {
+      vi.unstubAllGlobals();
+      vi.unstubAllEnvs();
+      server.closeAllConnections();
+      await new Promise<void>((resolve) => server.close(() => resolve()));
+    }
+  });
 });
