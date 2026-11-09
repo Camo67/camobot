@@ -1,12 +1,12 @@
-import { createServer, type Server } from "node:http";
+import type { Server } from "node:http";
+import { createServer } from "node:http";
 import type { AddressInfo } from "node:net";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { createModels } from "@earendil-works/pi-ai/models";
 import type { Context, Model } from "@earendil-works/pi-ai";
-import { localProvider, LOCAL_PROVIDER_ID } from "./pi-local-provider.js";
-import { reliableModelStream } from "./pi-runtime-stream.js";
-import { MODEL_STREAM_IDLE_TIMEOUT_MESSAGE } from "./pi-runtime-stream.js";
+import { createModels } from "@earendil-works/pi-ai/models";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { localModelFetch } from "./local-model-fetch.js";
+import { LOCAL_PROVIDER_ID, localProvider } from "./pi-local-provider.js";
+import { MODEL_STREAM_IDLE_TIMEOUT_MESSAGE, reliableModelStream } from "./pi-runtime-stream.js";
 
 vi.mock("./local-model-fetch.js", async (importOriginal) => {
   const actual = await importOriginal<typeof import("./local-model-fetch.js")>();
@@ -110,10 +110,16 @@ describe("local model transport (integrated)", () => {
     behavior = { kind: "stallBody" };
     vi.stubEnv("MODEL_STREAM_IDLE_TIMEOUT_MS", "1000");
     const model = localModel();
-    const stream = reliableModelStream(localModels(), model, context(), {
-      maxRetries: 0,
-      timeoutMs: 30_000,
-    } as never, 4096);
+    const stream = reliableModelStream(
+      localModels(),
+      model,
+      context(),
+      {
+        maxRetries: 0,
+        timeoutMs: 30_000,
+      } as never,
+      4096,
+    );
     const pending = stream.result();
     // Headers landed, body stalled: connection open and NOT closed before the abort.
     await vi.waitFor(() => expect(requestCount).toBe(1), { timeout: 2000 });
@@ -133,11 +139,17 @@ describe("local model transport (integrated)", () => {
     const controller = new AbortController();
     const cancelTimer = setTimeout(() => controller.abort(new Error("user cancel")), 400);
     const started = Date.now();
-    const stream = reliableModelStream(localModels(), model, context(), {
-      maxRetries: 0,
-      timeoutMs: 30_000,
-      signal: controller.signal,
-    } as never, 4096);
+    const stream = reliableModelStream(
+      localModels(),
+      model,
+      context(),
+      {
+        maxRetries: 0,
+        timeoutMs: 30_000,
+        signal: controller.signal,
+      } as never,
+      4096,
+    );
     const pending = stream.result();
     // Request in flight, pre-headers, connection not yet closed.
     await vi.waitFor(() => expect(requestCount).toBe(1), { timeout: 2000 });
@@ -156,10 +168,16 @@ describe("local model transport (integrated)", () => {
     vi.stubEnv("MODEL_STREAM_TIMEOUT_MS", "30000");
     const model = localModel();
     const started = Date.now();
-    const stream = reliableModelStream(localModels(), model, context(), {
-      maxRetries: 0,
-      timeoutMs: 1200,
-    } as never, 4096);
+    const stream = reliableModelStream(
+      localModels(),
+      model,
+      context(),
+      {
+        maxRetries: 0,
+        timeoutMs: 1200,
+      } as never,
+      4096,
+    );
     const result = await stream.result();
     const elapsed = Date.now() - started;
     expect(result.stopReason).toBe("error");
@@ -171,18 +189,30 @@ describe("local model transport (integrated)", () => {
   it("makes exactly one attempt with maxRetries 0, and retries=2 means three attempts on HTTP 500", async () => {
     behavior = { kind: "fail500" };
     const model = localModel();
-    const once = await reliableModelStream(localModels(), model, context(), {
-      maxRetries: 0,
-      timeoutMs: 10_000,
-    } as never, 4096).result();
+    const once = await reliableModelStream(
+      localModels(),
+      model,
+      context(),
+      {
+        maxRetries: 0,
+        timeoutMs: 10_000,
+      } as never,
+      4096,
+    ).result();
     expect(once.stopReason).toBe("error");
     expect(requestCount).toBe(1);
 
-    const thrice = await reliableModelStream(localModels(), model, context(), {
-      maxRetries: 2,
-      maxRetryDelayMs: 200,
-      timeoutMs: 10_000,
-    } as never, 4096).result();
+    const thrice = await reliableModelStream(
+      localModels(),
+      model,
+      context(),
+      {
+        maxRetries: 2,
+        maxRetryDelayMs: 200,
+        timeoutMs: 10_000,
+      } as never,
+      4096,
+    ).result();
     expect(thrice.stopReason).toBe("error");
     expect(requestCount).toBe(1 + 3);
   }, 20_000);
@@ -190,10 +220,16 @@ describe("local model transport (integrated)", () => {
   it("completes a normal streamed reply through the local transport", async () => {
     behavior = { kind: "ok" };
     const model = localModel();
-    const stream = reliableModelStream(localModels(), model, context(), {
-      maxRetries: 0,
-      timeoutMs: 10_000,
-    } as never, 4096);
+    const stream = reliableModelStream(
+      localModels(),
+      model,
+      context(),
+      {
+        maxRetries: 0,
+        timeoutMs: 10_000,
+      } as never,
+      4096,
+    );
     const result = await stream.result();
     expect(result.stopReason).toBe("stop");
     expect(localModelFetchMock).toHaveBeenCalled();
@@ -204,7 +240,10 @@ describe("transport selection preservation", () => {
   it("keeps an explicit caller fetch for local models", async () => {
     const model = localModel();
     let customCalls = 0;
-    const customFetch: typeof globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
+    const customFetch: typeof globalThis.fetch = (async (
+      input: RequestInfo | URL,
+      init?: RequestInit,
+    ) => {
       customCalls += 1;
       return globalThis.fetch(input, init);
     }) as typeof globalThis.fetch;
@@ -216,11 +255,17 @@ describe("transport selection preservation", () => {
       },
     };
     expect(() =>
-      reliableModelStream(fakeModels as never, model, context(), { fetch: customFetch } as never, 4096),
+      reliableModelStream(
+        fakeModels as never,
+        model,
+        context(),
+        { fetch: customFetch } as never,
+        4096,
+      ),
     ).toThrow("stop after capture");
     expect(localModelFetchMock).not.toHaveBeenCalled();
     expect((captured as { fetch: unknown }).fetch).toBeDefined();
-    const res = await ((captured as { fetch: typeof globalThis.fetch }).fetch)(
+    const res = await (captured as { fetch: typeof globalThis.fetch }).fetch(
       `${baseUrl}/chat/completions`,
       { method: "POST", body: "{}" },
     );
@@ -242,7 +287,7 @@ describe("transport selection preservation", () => {
       reliableModelStream(fakeModels as never, nonLocal, context(), {} as never, 4096),
     ).toThrow("stop after capture");
     expect(localModelFetchMock).not.toHaveBeenCalled();
-    const res = await ((captured as { fetch: typeof globalThis.fetch }).fetch)(
+    const res = await (captured as { fetch: typeof globalThis.fetch }).fetch(
       `${baseUrl}/chat/completions`,
       { method: "POST", body: "{}" },
     );
