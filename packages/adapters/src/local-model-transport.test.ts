@@ -84,7 +84,7 @@ afterEach(async () => {
   await new Promise<void>((resolve) => server.close(() => resolve()));
 });
 
-function localModel(): Model<"openai-completions"> {
+function localModel() {
   vi.stubEnv("RAKAZO_LOCAL_MODELS", "test-local-model");
   vi.stubEnv("RAKAZO_LOCAL_MODELS_URL", baseUrl);
   const provider = localProvider();
