@@ -10,6 +10,8 @@ import type {
   ProviderHeaders,
 } from "@earendil-works/pi-ai";
 import { AssistantMessageEventStream } from "@earendil-works/pi-ai/utils/event-stream";
+import { localModelFetch } from "./local-model-fetch.js";
+import { LOCAL_PROVIDER_ID } from "./pi-local-provider-id.js";
 import { codexComputeResidency } from "./pi-oauth.js";
 import {
   modelStreamIdleTimeoutMs,
@@ -224,7 +226,11 @@ export function reliableModelStream(
         signal: watchdog.signal,
         fetch: APIS_WITHOUT_CUSTOM_FETCH.has(model.api)
           ? options?.fetch
-          : modelRequestFetch(options?.fetch, modelStreamIdleTimeoutMs()),
+          : modelRequestFetch(
+              options?.fetch ??
+                (model.provider === LOCAL_PROVIDER_ID ? localModelFetch : undefined),
+              modelStreamIdleTimeoutMs(),
+            ),
         // Only a 2xx arms the shared watchdog. Error bodies are bounded by
         // the fetch wrapper where supported; caller hooks still see every status.
         onResponse: (response, requestModel) => {
